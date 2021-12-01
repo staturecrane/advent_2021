@@ -1,10 +1,12 @@
+from typing import Iterator
+
 from python_utils.input import add_argparse, advent_input
 
 get_int = lambda x: int(x.strip())
 
 
 @advent_input('01/input_1.txt')
-def task_one(lines):
+def task_one(lines: Iterator[str]) -> None:
     prev_value = get_int(next(lines))
     count = 0
 
@@ -18,7 +20,7 @@ def task_one(lines):
 
 
 @advent_input('01/input_1.txt')
-def task_two(lines):
+def task_two(lines: Iterator[str]):
     values = [get_int(line) for line in lines]
 
     prev = 0
