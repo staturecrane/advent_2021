@@ -5,7 +5,7 @@ from python_utils.input import add_argparse, advent_input
 get_int = lambda x: int(x.strip())
 
 
-@advent_input('01/input_1.txt')
+@advent_input("01/input_1.txt")
 def task_one(lines: Iterator[str]) -> None:
     prev_value = get_int(next(lines))
     count = 0
@@ -19,7 +19,7 @@ def task_one(lines: Iterator[str]) -> None:
     print(count)
 
 
-@advent_input('01/input_1.txt')
+@advent_input("01/input_1.txt")
 def task_two(lines: Iterator[str]):
     values = [get_int(line) for line in lines]
 
@@ -27,11 +27,11 @@ def task_two(lines: Iterator[str]):
     count = 0
     for i in range(values_length := len(values)):
         if (i + 3) >= values_length:
-            break 
-        
-        if (current_value := sum(values[i:i+3])) > prev:
+            break
+
+        if (current_value := sum(values[i : i + 3])) > prev:
             count += 1
-        
+
         prev = current_value
 
     print(count)
