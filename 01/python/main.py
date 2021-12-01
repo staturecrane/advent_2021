@@ -34,6 +34,7 @@ def task_two(lines):
 
     print(count)
 
+
 @add_argparse
 def main(task):
     task_one() if task == "one" else task_two()
