@@ -4,13 +4,12 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
 
 void one(){
     std::string line;
     std::ifstream rfile;
 
-    vector<int> values;
+    std::vector<int> values;
 
     rfile.open("01/input_1.txt");
     
@@ -26,7 +25,7 @@ void one(){
 
     for (int i: values) {
         if (i > prev) {
-            ++count;
+            count++;
         }
 
         prev = i;
@@ -39,7 +38,7 @@ void two(){
     std::string line;
     std::ifstream rfile;
 
-    vector<int> values;
+    std::vector<int> values;
 
     rfile.open("01/input_1.txt");
     
@@ -65,7 +64,7 @@ void two(){
         int sum = a + b + c;
 
         if (sum > prev) {
-           ++ count;
+           count++;
         }
 
         prev = sum;
