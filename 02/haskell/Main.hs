@@ -35,6 +35,6 @@ main = do
     let valueActions = getActions values []
     let converted = map convertAction valueActions
     
-    let results = calculator [("forward", 7)] 0 0
+    let results = calculator converted 0 0
 
     print results
