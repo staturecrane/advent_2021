@@ -4,21 +4,11 @@
 #include <iostream>
 #include <vector>
 
+#include <utils.h>
+
 
 void one(){
-    std::string line;
-    std::ifstream rfile;
-
-    std::vector<int> values;
-
-    rfile.open("01/input_1.txt");
-    
-    if (rfile.is_open()) {
-        while (std::getline(rfile, line)) {
-            values.push_back(std::stoi(line));
-        }
-        rfile.close();
-    }
+    std::vector<int> values = textUtils::getFileLinesInt("02/input_1.txt");
 
     int prev = values.at(0);
     int count = 0;
@@ -35,19 +25,7 @@ void one(){
 }
 
 void two(){
-    std::string line;
-    std::ifstream rfile;
-
-    std::vector<int> values;
-
-    rfile.open("01/input_1.txt");
-    
-    if (rfile.is_open()) {
-        while (std::getline(rfile, line)) {
-            values.push_back(std::stoi(line));
-        }
-        rfile.close();
-    }
+    std::vector<int> values = textUtils::getFileLinesInt("01/input_1.txt");
 
     int prev = 0;
     int count = 0;
