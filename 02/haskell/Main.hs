@@ -1,13 +1,15 @@
 module Main (main) where
 
+import Debug.Trace
 import System.IO
 
 readInt :: String -> Int
 readInt = read
 
 getActions :: [String] -> [[String]] -> [[String]]
-getActions [] acc = acc
-getActions list acc = getActions (drop 2 list) (acc ++ [take 2 list]) 
+getActions list acc = case list of 
+    [] -> acc
+    (x:xs) -> getActions (drop 2 list) (acc ++ [take 2 list]) 
 
 convertAction :: [String] -> (String, Int)
 convertAction [a, b] = (a, (read b))
@@ -18,14 +20,32 @@ calculate action depth horizontal = case action of
     ("up", x) -> (depth - x, horizontal)
     ("down", x) -> (depth + x, horizontal)
 
-calculator :: [(String, Int)] -> Int -> Int -> Int
-calculator [] depth horizontal = depth * horizontal
-calulator (a:b) depth horizontal = calculator b nextDepth nextHorizontal 
-    where
-        actionResults = calculate a depth horizontal
+calculate2 :: (String, Int) -> Int -> Int -> Int -> [Int]
+calculate2 action depth horizontal aim = case action of 
+    ("forward", x) -> [depth + (aim * x), horizontal + x, aim]
+    ("up", x) -> [depth, horizontal, aim - x]
+    ("down", x) -> [depth, horizontal, aim + x]
 
-        nextDepth = fst actionResults
-        nextHorizontal = snd actionResults
+calculator :: [(String, Int)] -> Int -> Int -> Int
+calculator list depth horizontal = case list of 
+    [] -> depth * horizontal
+    (x:xs) -> calculator xs nextDepth nextHorizontal 
+        where
+            actionResults = calculate x depth horizontal
+
+            nextDepth = fst actionResults
+            nextHorizontal = snd actionResults
+
+calculator2 :: [(String, Int)] -> Int -> Int -> Int -> Int
+calculator2 list depth horizontal aim = case list of 
+    [] -> depth * horizontal
+    (x:xs) -> calculator2 xs nextDepth nextHorizontal nextAim
+        where
+            actionResults = calculate2 x depth horizontal aim
+
+            nextDepth = actionResults !! 0
+            nextHorizontal = actionResults !! 1
+            nextAim = actionResults !! 2
 
 main :: IO()
 main = do
@@ -36,5 +56,7 @@ main = do
     let converted = map convertAction valueActions
     
     let results = calculator converted 0 0
+    let results2 = calculator2 converted 0 0 0
 
     print results
+    print results2
