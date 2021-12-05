@@ -11,13 +11,6 @@ readInt = read
 getLengths :: [String] -> Int -> [Int]
 getLengths values index = map length $ group $ sort $ map readInt $ map (\x -> [x !! index]) values
 
--- getBit :: (Int -> Int -> Int) -> [String] -> Int  -> Int
--- getBit maxMin values index = if maxMin a b == a then 0 else 1 
---     where 
---         lengths = getLengths values index
---         a = lengths !! 0
---         b = lengths !! 1
-
 getBit :: (Int -> Int -> Int) -> Int -> [String] -> Int  -> Int
 getBit maxMin keepIndex values index = if a == b then keepIndex else if maxMin a b == a then 0 else 1 
     where 
