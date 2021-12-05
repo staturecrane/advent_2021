@@ -41,7 +41,7 @@ main = do
     let epBits = map (getBit min 0 values) [0..11]
     let epsilon = read (intercalate "" (map show epBits)) :: Integer
 
-    print ((bintodec gamma) * (bintodec epsilon))
+    print $ (bintodec gamma) * (bintodec epsilon)
 
     -- Part Two
 
